@@ -10,15 +10,19 @@ public class FormController {
 	
 	public String onSubmit(User user) {
 		
+		//get the user value from the input form
 		FacesContext ctx = FacesContext.getCurrentInstance();
+		
+		//User user = ctx.getApplication().evaluateExpressionGet(ctx, "#{user}", User.class);
+		
+		
+		//puts user object into post request
 		ctx.getExternalContext().getRequestMap().put("user", user);
-		return "TestResponse.xhtml";
+		
+		//return the next page
+		return "Response.xhtml";
 	}
 	
-	public String onFlash(User user) {
-		FacesContext ctx = FacesContext.getCurrentInstance();
-		ctx.getExternalContext().getFlash().put("user", user);
-		return "TestResponse2.xhtml?faces-redirect=true";
-	}
+	
 
 }

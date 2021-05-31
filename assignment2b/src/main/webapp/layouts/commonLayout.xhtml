@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+<style>
+#footer {position:fixed; bottom:0; left:0; width:100%; background-color:purple; color:white;}
+</style>
+
+<!-- Div for the general page make up -->
+  <div id="page">
+ 
+<!-- Div for the general header --> 
+    <div id="header">
+    
+      <ui:insert name="header">
+        
+        <ui:include src="/layouts/commonHeader.xhtml" />
+      
+      </ui:insert>
+    
+    </div>
+
+<!-- Div for the general content for the web page -->    
+    <div id="content">
+    
+    <ui:insert name="content">
+    
+      <ui:include src="/layouts/commonContent.xhtml" />
+    
+    </ui:insert>
+    
+    </div>
+
+<!-- Div for the general footer -->    
+    <div id="footer">
+    
+    <ui:insert name="footer">
+    
+      <ui:include src="/layouts/commonFooter.xhtml"/>
+    
+    </ui:insert>
+    
+    </div>
+  
+  </div>
+
+</h:body>
+
+</html>

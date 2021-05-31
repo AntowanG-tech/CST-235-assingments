@@ -8,18 +8,22 @@
 </h:head>
 <body>
 
-  <ui:composition>
+  <ui:composition template="layouts/commonLayout.xhtml" align="center">
+   <ui:define name="content">
  	<!--  Simple JSF Form -->
 	<h:form>
-		<h:inputText id="firstName" required="true" value="#{user.firstName}">
+	    First Name: <h:inputText id="firstName" required="true" value="#{user.firstName}">
 		</h:inputText>
-		<h:inputText id="lastName" required="true" value="#{user.lastName}">
+		<br></br>
+		<br></br>
+		Last Name: <h:inputText id="lastName" required="true" value="#{user.lastName}">
 		</h:inputText>
-		<h:commandButton id="submit" value="Submit" action="#{formController.onSubmit(user)}">
-		</h:commandButton>
-		<h:commandButton id="onflash" value="Flash" action="#{formController.onFlash(user)}">
-		</h:commandButton>
+		<br></br>
+		<br></br>
+		<h:commandButton action="#{formController.onSubmit(user)}" value="Submit"/>
 	</h:form>
+	<h:messages/>
+  </ui:define>
  </ui:composition>
      
 </body>
