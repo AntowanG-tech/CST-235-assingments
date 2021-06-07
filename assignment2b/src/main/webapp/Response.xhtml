@@ -23,7 +23,7 @@ border: 1px black solid;
    <br></br>
    
    <!-- Data Table -->
-   <h:dataTable value="#{orders}" var="o" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd, order-table-even">
+   <h:dataTable value="#{formController.service.orders}" var="o" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd, order-table-even">
    
    <h:column>
 				<f:facet name="header">Order number</f:facet>
