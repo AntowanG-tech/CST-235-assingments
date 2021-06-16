@@ -27,10 +27,7 @@ public class AnotherOrdersBusinessService implements OrdersBusinessInterface {
     public AnotherOrdersBusinessService() {
         // TODO Auto-generated constructor stub
     	
-    	orders.add(new Order("000011", "thing1", 1.00f, 1));
-    	orders.add(new Order("000012", "thing2", 2.00f, 2));
-    	orders.add(new Order("000013", "thing3", 3.00f, 3));
-    	orders.add(new Order("000014", "thing4", 4.00f, 4));
+    	
     }
 
 	/**
@@ -44,7 +41,7 @@ public class AnotherOrdersBusinessService implements OrdersBusinessInterface {
 	@Override
 	public List<Order> getOrders() {
 		// TODO Auto-generated method stub
-		return null;
+		return orders;
 	}
 
 	@Override

@@ -7,13 +7,6 @@
 <h:head>
 <title>JSF Response Page</title>
 
-<style>
-
-.order-table {
-border: 1px black solid;
-
-}
-</style>
 </h:head>
 <body>
   
@@ -23,9 +16,13 @@ border: 1px black solid;
    <br></br>
    
    <!-- Data Table -->
-   <h:dataTable value="#{formController.service.orders}" var="o" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd, order-table-even">
+   <h:dataTable value="#{orders.orders}" var="o" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd, order-table-even" id="dataTable">
    
    <h:column>
+				<f:facet name="header">ID</f:facet>
+				#{o.id}	
+			</h:column>
+			<h:column>
 				<f:facet name="header">Order number</f:facet>
 				#{o.orderNumber}	
 			</h:column>

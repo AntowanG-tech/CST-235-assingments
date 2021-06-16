@@ -1,8 +1,10 @@
 package business;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -10,6 +12,7 @@ import javax.enterprise.inject.Alternative;
 
 import beans.Order;
 import beans.Orders;
+import data.OrdersDataService;
 
 /**
  * Session Bean implementation class OrdersBusinessService
@@ -20,6 +23,9 @@ import beans.Orders;
 @Alternative
 public class OrdersBusinessService implements OrdersBusinessInterface {
 	List<Order> orders = new ArrayList<Order>();
+	
+	@EJB
+	OrdersDataService service;
 
     /**
      * Default constructor. 
@@ -27,10 +33,7 @@ public class OrdersBusinessService implements OrdersBusinessInterface {
     public OrdersBusinessService() {
         // TODO Auto-generated constructor stub
     	
-    	orders.add(new Order("00001", "dummy1", 1.00f, 1));
-    	orders.add(new Order("00002", "dummy2", 2.00f, 2));
-    	orders.add(new Order("00003", "dummy3", 3.00f, 3));
-    	orders.add(new Order("00004", "dummy4", 4.00f, 4));
+    	
     }
 
 	/**
@@ -42,9 +45,10 @@ public class OrdersBusinessService implements OrdersBusinessInterface {
     }
 
 	@Override
-	public List<Order> getOrders() {
+	public List<Order> getOrders() throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		service.findAll();
+		return orders;
 	}
 
 	@Override
