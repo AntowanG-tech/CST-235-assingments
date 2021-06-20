@@ -47,7 +47,8 @@ public class OrdersBusinessService implements OrdersBusinessInterface {
 	@Override
 	public List<Order> getOrders() throws SQLException {
 		// TODO Auto-generated method stub
-		service.findAll();
+		
+		orders = service.findAll();
 		return orders;
 	}
 

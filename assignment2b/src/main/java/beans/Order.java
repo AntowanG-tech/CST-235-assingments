@@ -1,5 +1,8 @@
 package beans;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="Order")
 public class Order {
 	int id;
     String orderNumber;

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -35,8 +36,14 @@ public class Orders {
 		this.orders = orders;
 	}
 	
-	public void init() throws SQLException {
-		orders = service.getOrders();
+	@PostConstruct
+	public void init() {
+		try {
+			orders = service.getOrders();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
