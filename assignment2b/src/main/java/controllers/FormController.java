@@ -8,10 +8,13 @@ import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import beans.Order;
 
 import beans.User;
 
 import business.OrdersBusinessInterface;
+import data.OrdersDataService;
+
 
 @ManagedBean
 @ViewScoped
@@ -50,6 +53,31 @@ public class FormController {
 		
 		return service;
 	}
+	
+public String onOrderSubmit() {
+		
+		//get the product values from the input form
+				FacesContext context = FacesContext.getCurrentInstance();
+				Order customerOrder = context.getApplication().evaluateExpressionGet(context, "#{order}", Order.class);
+				
+				//put the user object into the POST request
+				//FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("product", product);
+				
+				OrdersDataService service = new OrdersDataService();
+				
+				try {
+					
+					service.insertOrder(customerOrder);
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
+		
+		return "Response.xhtml";
+	}
+
 	
 	
 	

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -41,6 +42,13 @@ public class OrdersRestService {
 		
 		return orderXml;
 		
+		
+	}
+	
+	@POST
+	@Path("/post")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void postOrdersAsJson() {
 		
 	}
 	

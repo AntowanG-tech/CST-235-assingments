@@ -2,6 +2,7 @@ package data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -58,10 +59,10 @@ public class OrdersDataService implements DataAccessInterface {
 				float price = rs.getFloat("price");
 				int quantity = rs.getInt("quantity");
 				
-				Order newOrder = new Order(rs.getInt("id"), rs.getString("product_name"), rs.getString("order_no"), rs.getFloat("price"), rs.getInt("quantity"));
+				Order newOrder = new Order(rs.getInt("id"), rs.getString("order_no"), rs.getString("product_name"), rs.getFloat("price"), rs.getInt("quantity"));
 		        orders.add(newOrder);
 		        
-		        System.out.println("ID: " + id + ", Product Name: " + productName + ", Order Number:  " + orderNo + ", Price: " + price + ", Quantity: " + quantity + ".");
+		        System.out.println("ID: " + id + ", Order Nubmer: " + orderNo + ", Product Name:  " + productName + ", Price: " + price + ", Quantity: " + quantity + ".");
 				}
 			
 			
@@ -81,6 +82,53 @@ public class OrdersDataService implements DataAccessInterface {
 		
 	
 	
+	}
+	
+public int insertOrder(Order customerOrder) throws SQLException {
+		
+
+		String dbURL = "jdbc:mysql://localhost:3306/testdatabase";
+		String user = "root";
+		String password = "root";
+		
+		Connection c = null;
+		PreparedStatement st = null;
+		int rs = 0;
+		
+		//String SQL = "INSERT INTO testdatabase.orders(order_no, product_name, price, quantity) VALUES (?,?,?,?)";
+		
+		
+		try {
+			c = DriverManager.getConnection(dbURL, user, password);
+			System.out.println("  ////// Connection is successful "+ dbURL + " user: " + user + " password: " + password + " ///////// ");
+			
+			// create sql statement
+			//Statement stmt = c.createStatement();
+			st = c.prepareStatement("INSERT INTO testdatabase.orders(id, order_no, product_name, price, quantity) VALUES (?, ?, ?, ?, ?)");
+			st.setInt(1, customerOrder.getId());
+			st.setString(2,  customerOrder.getOrderNumber());
+			st.setString(3,  customerOrder.getProductName());
+			st.setFloat(4,  customerOrder.getPrice());
+			st.setInt(5,  customerOrder.getQuantity());
+			
+			//execute statement
+			//stmt.executeUpdate(SQL);
+			rs = st.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			
+			System.out.println("### ERROR --- connecting to database: ");
+			e.printStackTrace();
+			System.out.println("### END ###");
+		} finally {
+			//close the connection to db
+			st.close();
+			c.close();
+		}
+		
+	return rs;
+		
 	}
 	}
 

@@ -4,25 +4,40 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-<title>JSF Form Page</title>
+<title>Create New Order</title>
 </h:head>
 <body>
 
   <ui:composition template="layouts/commonLayout.xhtml" align="center">
    <ui:define name="content">
    
-   <a href="CreateOrder.xhtml" class="submitButton">Create Order</a>
+    <a href="Response.xhtml" class="submitButton">See Orders</a>
+    
+    <h3>Order Creation</h3>
+    
  	<!--  Simple JSF Form -->
 	<h:form>
-	    First Name: <h:inputText id="firstName" required="true" value="#{user.firstName}">
+	    ID: <h:inputText value="#{order.id}">
+	    </h:inputText>
+	    <br></br>
+	    <br></br>
+	    Order Number: <h:inputText value="#{order.orderNumber}">
 		</h:inputText>
 		<br></br>
 		<br></br>
-		Last Name: <h:inputText id="lastName" required="true" value="#{user.lastName}">
+		Product Name: <h:inputText value="#{order.productName}">
 		</h:inputText>
 		<br></br>
 		<br></br>
-		<h:commandButton action="#{formController.onSubmit(user)}" value="Submit"/>
+		Price: <h:inputText value="#{order.price}">
+		</h:inputText>
+		<br></br>
+		<br></br>
+		Quantity: <h:inputText value="#{order.quantity}">
+		</h:inputText>
+		<br></br>
+		<br></br>
+		<h:commandButton action="#{formController.onOrderSubmit()}" value="Submit" class="submitButton"/>
 	</h:form>
 	<h:messages/>
   </ui:define>
