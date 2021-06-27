@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 import beans.Order;
 
-import beans.User;
+
 
 import business.OrdersBusinessInterface;
 import data.OrdersDataService;
@@ -25,28 +25,14 @@ public class FormController {
 	
 	
 	
-	public String onSubmit(User user) throws SQLException {
+	public String onLogOff() {
 		
-		//get the user value from the input form
-		FacesContext ctx = FacesContext.getCurrentInstance();
-		//Order order = ctx.getApplication().evaluateExpressionGet(ctx, "#{order}", Order.class);
-		
-	service.getOrders();	
-		
-		
-		//puts user object into post request
-		ctx.getExternalContext().getRequestMap().put("user", user);
-		
-		
-		//implementation of the services test method
-		service.test();
-		
-		
-		
-		
-		
-		//return the next page
-		return "Response.xhtml";
+		// Invalidate the Session to clear the security token
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+			
+		// Redirect to a protected page (so we get a full HTTP Request) to get Login Page
+		return "LoginPage.xhtml?faces-redirect=true";
+
 	}
 	
 	public OrdersBusinessInterface getService() {

@@ -12,7 +12,7 @@
   
   <ui:composition template="/layouts/commonLayout.xhtml">
    <ui:define name="content">
-   <p>Hello #{user.firstName} #{user.lastName}. Your orders are:</p>
+   <p>Hello #{user.firstName}. Your orders are:</p>
    <br></br>
    
    <!-- Data Table -->
@@ -47,8 +47,10 @@
    <br></br>
    
    <h:form align="center">
-	<h:commandButton action="LoginPage.xhtml" value="Login" />
+	<h:commandButton action="#{formController.onLogOff}" value="Log Out" />
 </h:form>
+
+
    
    </ui:define>
   </ui:composition>
